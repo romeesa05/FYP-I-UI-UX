@@ -1,0 +1,284 @@
+/* =========================================================
+   9. Cycle & symptom journal, 10. Progress & history
+   Colours sampled from the reference image (indicators muted per the App UI spec).
+   ========================================================= */
+.hd-root {
+  --cy-selected: #5a1733;
+  --cy-period-bg: #f1dbe3;
+  --cy-period-text: #6d2a45;
+  --cy-period: #c0687f;
+  --cy-fertile: #6f9a7c;
+  --cy-ovulation: #d4935c;
+  --cy-logged: #3f4588;
+  --cy-chip: #e9e5f0;
+  --cy-chip-text: #3f3550;
+  --pg-line: #6f79b0;
+  --pg-grid: #ebe8ef;
+  --pg-tabs: #ebe7ee;
+}
+.hd-root[data-theme="dark"] {
+  --cy-selected: #8a3a5c;
+  --cy-period-bg: #3a2030;
+  --cy-period-text: #f0c8d6;
+  --cy-period: #d98aa0;
+  --cy-fertile: #8fbf9b;
+  --cy-ovulation: #e3ad7d;
+  --cy-logged: #a9afe8;
+  --cy-chip: #2a2433;
+  --cy-chip-text: #ddd3e6;
+  --pg-line: #9aa3dc;
+  --pg-grid: #2c2632;
+  --pg-tabs: #241e2a;
+}
+
+/* =========================================================
+   9. Cycle tracker
+   ========================================================= */
+.cy-main { padding-top: 4px; gap: 18px; }
+
+.cy-sample {
+  margin: 0;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 13px;
+  color: var(--text-2);
+  background: var(--cy-chip);
+}
+
+.cy-cal {
+  padding: 16px 12px 14px;
+  border-radius: 24px;
+  background: var(--fl-card);
+  box-shadow: var(--fl-shadow);
+}
+.cy-cal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px 10px;
+}
+.cy-month { margin: 0; font-size: 17px; font-weight: 600; color: var(--text); }
+.cy-nav { display: flex; gap: 4px; }
+.cy-nav button {
+  all: unset;
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+}
+.cy-nav button:hover { background: var(--fl-track); }
+.cy-nav button:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+
+.cy-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: 4px;
+}
+.cy-wd {
+  padding-bottom: 6px;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-2);
+}
+.cy-cell {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 4px;
+  -webkit-tap-highlight-color: transparent;
+}
+.cy-cell.is-empty { cursor: default; }
+.cy-num {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  transition: background 150ms ease, color 150ms ease;
+}
+.cy-cell.is-today .cy-num { box-shadow: inset 0 0 0 1.5px var(--cy-selected); }
+.cy-cell.is-period .cy-num { color: var(--cy-period-text); background: var(--cy-period-bg); }
+.cy-cell.is-predicted .cy-num { border: 1.5px dashed var(--cy-period); color: var(--cy-period-text); }
+.cy-num { border: 1.5px solid transparent; }
+.cy-cell.is-selected .cy-num { color: #ffffff; background: var(--cy-selected); box-shadow: 0 4px 10px rgba(90, 23, 51, 0.3); }
+.cy-cell:focus-visible .cy-num { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+.cy-dots { display: flex; gap: 3px; height: 6px; margin-top: 3px; }
+.cy-dot { width: 5px; height: 5px; border-radius: 50%; }
+.cy-dot--fertile { background: var(--cy-fertile); }
+.cy-dot--ovulation { background: var(--cy-ovulation); }
+.cy-dot--logged { background: var(--cy-logged); }
+
+.cy-legend {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px 10px;
+  margin: 10px 6px 0;
+  padding: 12px 0 0;
+  border-top: 1px solid var(--fl-option-border);
+}
+.cy-legend li {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-2);
+}
+.cy-key { width: 9px; height: 9px; border-radius: 50%; }
+.cy-key--period { background: var(--cy-period); }
+.cy-key--fertile { background: var(--cy-fertile); }
+.cy-key--ovulation { background: var(--cy-ovulation); }
+.cy-key--logged { background: var(--cy-logged); }
+
+.cy-entry { padding-bottom: 18px; }
+.cy-entry-title { margin: 0; font-size: 19px; font-weight: 600; color: var(--text); }
+.cy-entry-sub { margin: 6px 0 0; font-size: 13px; line-height: 1.5; color: var(--text-2); }
+.cy-entry-label { margin: 16px 0 10px; font-size: 14px; font-weight: 500; color: var(--text-2); }
+.cy-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.cy-chip {
+  all: unset;
+  cursor: pointer;
+  height: 36px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--cy-chip-text);
+  background: var(--cy-chip);
+  transition: background 150ms ease, color 150ms ease;
+}
+.cy-chip.is-on { color: #ffffff; background: var(--fl-periwinkle); }
+.cy-chip--period.is-on { background: var(--cy-period); }
+.cy-chip:disabled { cursor: not-allowed; opacity: 0.5; }
+.cy-chip:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+.cy-save {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  width: 100%;
+  height: 52px;
+  margin-top: 20px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: #ffffff;
+  background: var(--cy-selected);
+  transition: filter 150ms ease;
+}
+.cy-save:hover:not(:disabled) { filter: brightness(1.1); }
+.cy-save:disabled { cursor: not-allowed; opacity: 0.5; }
+.cy-save:focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+
+.cy-footnote { margin: 0; text-align: center; font-size: 12px; line-height: 1.5; color: var(--muted); }
+
+/* =========================================================
+   10. Progress & history
+   ========================================================= */
+.pg-main { padding-top: 4px; }
+
+.pg-range {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  padding: 4px;
+  border-radius: 16px;
+  background: var(--pg-tabs);
+}
+.pg-range-btn {
+  all: unset;
+  cursor: pointer;
+  height: 38px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--fl-card);
+  transition: background 150ms ease, color 150ms ease;
+}
+.pg-range-btn.is-active { color: #ffffff; background: var(--cy-selected); }
+.pg-range-btn:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+
+.pg-card { margin-top: 18px; padding-bottom: 12px; }
+.pg-chart { display: block; width: 100%; height: auto; margin-top: 6px; }
+.pg-grid { stroke: var(--pg-grid); stroke-width: 1; }
+.pg-axis { font-size: 11px; fill: var(--text-2); font-family: inherit; }
+.pg-chart-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+  padding: 0 24px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-2);
+}
+
+.pg-caution { margin: 12px 4px 0; font-size: 12.5px; line-height: 1.5; color: var(--text-2); }
+
+.pg-past-head { display: flex; align-items: center; justify-content: space-between; margin: 24px 0 12px; }
+.pg-past-title { margin: 0; font-size: 18px; font-weight: 600; color: var(--text); }
+.pg-sample {
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-2);
+  background: var(--pg-tabs);
+}
+
+.pg-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.pg-item {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  width: 100%;
+  min-height: 56px;
+  padding: 0 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-radius: 18px;
+  background: var(--fl-card);
+  box-shadow: var(--fl-shadow);
+  border: 1.5px solid transparent;
+}
+.pg-item.is-latest { background: var(--fl-selected); border-color: var(--fl-selected-border); }
+.pg-item:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.pg-item-icon { display: inline-flex; color: var(--fl-maroon); }
+.pg-item-date { flex: 1; font-size: 15px; color: var(--text); }
+.pg-item-score { font-size: 15px; font-weight: 600; font-variant-numeric: tabular-nums; color: var(--text); }
+.pg-sample-note { margin: 12px 4px 0; font-size: 12.5px; color: var(--text-2); }
+
+@media (max-width: 360px) {
+  .cy-num { width: 30px; height: 30px; font-size: 13px; }
+  .cy-legend { justify-content: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cy-num, .cy-chip, .pg-range-btn { transition: none; }
+}

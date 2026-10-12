@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
+/* =========================================================
+   Splash — colours sampled from the splash reference picture
+   (same in light and dark mode, as in the reference)
+   ========================================================= */
+.sp-root {
+  min-height: 100dvh;
+  display: flex;
+  justify-content: center;
+  background: #46122f;
+  font-family: "Inter", "Manrope", system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.sp-root *,
+.sp-root *::before,
+.sp-root *::after { box-sizing: border-box; }
+
+.sp-screen {
+  position: relative;
+  width: 100%;
+  max-width: 430px;
+  min-height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  color: #ffffff;
+  background: #62223d;
+}
+
+.sp-silk {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.sp-drift { animation: sp-drift 14s ease-in-out infinite alternate; }
+.sp-drift--slow { animation-duration: 20s; }
+
+/* ---------- Centre block ---------- */
+.sp-center {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 36px 40px;
+  animation: sp-rise 600ms ease-out both;
+}
+
+.sp-logo { color: #ead7ec; }
+
+.sp-title {
+  margin: 22px 0 0;
+  max-width: 320px;
+  white-space: pre-line;
+  font-size: 30px;
+  line-height: 1.25;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+}
+
+.sp-body {
+  margin: 14px 0 0;
+  max-width: 290px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #ecdde8;
+}
+
+/* ---------- Footer ---------- */
+.sp-footer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  padding: 0 44px calc(36px + env(safe-area-inset-bottom));
+}
+
+.sp-btn {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  width: 100%;
+  height: 52px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #3a2433;
+  background: #dcdaef;
+  box-shadow: 0 8px 22px rgba(30, 6, 20, 0.28);
+  transition: filter 150ms ease, transform 100ms ease;
+}
+.sp-btn:hover { filter: brightness(1.04); }
+.sp-btn:active { transform: scale(0.98); }
+.sp-btn:focus-visible { outline: 2px solid #ffffff; outline-offset: 3px; }
+
+.sp-dots {
+  display: flex;
+  gap: 8px;
+}
+.sp-dot {
+  all: unset;
+  cursor: pointer;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #a16d84;
+  transition: background 200ms ease;
+}
+.sp-dot.is-active { background: #ead7e2; }
+.sp-dot:focus-visible { outline: 2px solid #ffffff; outline-offset: 3px; }
+
+/* ---------- Motion ---------- */
+@keyframes sp-rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes sp-drift { from { transform: translateX(-10px); } to { transform: translateX(10px); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .sp-root *, .sp-root *::before, .sp-root *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Short phones */
+@media (max-height: 700px) {
+  .sp-center { padding-top: 60px; }
+  .sp-title { font-size: 26px; }
+}

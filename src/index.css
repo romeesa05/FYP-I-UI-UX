@@ -1,0 +1,41 @@
+/* Global reset — the screens bring their own theme (see screens/*.css). */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:root {
+  color-scheme: light dark;
+  font-family: "Inter", "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #f5f3f8;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  background: #f5f3f8;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  background: #141218;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+button,
+input {
+  font: inherit;
+}

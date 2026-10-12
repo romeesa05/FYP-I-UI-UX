@@ -1,0 +1,50 @@
+.theme-toggle {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 150ms ease, color 150ms ease, transform 100ms ease;
+}
+.theme-toggle:active { transform: scale(0.94); }
+
+/* On app surfaces (Login / Sign Up) — uses the screen's own tokens */
+.theme-toggle--surface {
+  color: var(--text, #241923);
+  background: var(--surface, #ffffff);
+  border: 1px solid var(--border, #e5dfea);
+}
+.theme-toggle--surface:hover { background: var(--input, #f8f6fa); }
+.theme-toggle--surface:focus-visible {
+  outline: 2px solid var(--focus, #685ee6);
+  outline-offset: 3px;
+}
+
+/* On the maroon hero / splash — same glass look as the Skip button */
+.theme-toggle--glass {
+  width: 36px;
+  height: 36px;
+  color: #ead9ee;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+.theme-toggle--glass:hover { background: rgba(255, 255, 255, 0.14); }
+.theme-toggle--glass:focus-visible {
+  outline: 2px solid #bfa1c4;
+  outline-offset: 2px;
+}
+
+.theme-toggle-icon { animation: theme-toggle-spin 300ms ease-out both; }
+@keyframes theme-toggle-spin {
+  from { opacity: 0; transform: rotate(-60deg) scale(0.6); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle, .theme-toggle-icon { animation: none; transition: none; }
+}
