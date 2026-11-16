@@ -111,7 +111,7 @@ export function predictRisk(answers) {
 
   const raw = BASE_RISK + contributions.reduce((sum, c) => sum + c.value, 0);
   const score = Math.round(Math.min(0.97, Math.max(0.03, raw)) * 100);
-  const band = score >= 60 ? 'Higher risk' : score >= 35 ? 'Moderate risk' : 'Lower risk';
+  const band = score >= 70 ? 'Higher risk' : score >= 30 ? 'Moderate risk' : 'Lower risk'; // SRS BR-02
   return { score, band, contributions, answers: { ...answers }, date: new Date().toISOString() };
 }
 

@@ -13,6 +13,7 @@ import NutritionScreen from './screens/NutritionScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import CycleScreen from './screens/CycleScreen';
 import ProgressScreen from './screens/ProgressScreen';
+import PlanScreen from './screens/PlanScreen';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/assessment" element={<AssessmentScreen />} />
         <Route path="/results" element={<ResultsScreen />} />
         <Route path="/shap" element={<ShapScreen />} />
+        <Route path="/plan" element={<PlanScreen />} />
         <Route path="/simulator" element={<SimulatorScreen />} />
         <Route path="/exercise" element={<ComingSoonScreen title="Exercise" description="Movement plans that fit your energy and cycle." />} />
         <Route path="/nutrition" element={<NutritionScreen />} />

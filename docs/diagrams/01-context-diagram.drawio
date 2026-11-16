@@ -1,0 +1,48 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Context Diagram" id="context">
+    <mxGraphModel dx="1200" dy="700" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1140" pageHeight="330" background="#FFFFFF" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="system" value="&lt;b&gt;PCOS Risk Prediction&lt;br&gt;and Management System&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;(Mobile app + Backend API + ML model)&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;fillColor=#F1F1F1;strokeColor=#000000;fontColor=#000000;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="440" y="170" width="250" height="130" as="geometry" />
+        </mxCell>
+
+        <mxCell id="user" value="&lt;b&gt;Registered User&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="20" y="200" width="150" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="auth" value="&lt;b&gt;Firebase Authentication&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="465" y="10" width="200" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="db" value="&lt;b&gt;Cloud Firestore&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;fontColor=#000000;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="920" y="200" width="200" height="70" as="geometry" />
+        </mxCell>
+
+        <!-- User <-> System (two parallel horizontal arrows; labels above and below) -->
+        <mxCell id="f1" value="Profile data, questionnaire answers,&lt;br&gt;food searches, label photos,&lt;br&gt;simulator changes, cycle logs" style="endArrow=classic;html=1;rounded=0;strokeColor=#000000;fontColor=#000000;fontSize=10;labelBackgroundColor=#FFFFFF;verticalAlign=bottom;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.385;entryDx=0;entryDy=0;" edge="1" parent="1" source="user" target="system">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f2" value="Risk score and level, explanation,&lt;br&gt;recommendations, GI/GL info,&lt;br&gt;history, cycle calendar" style="endArrow=classic;html=1;rounded=0;strokeColor=#000000;fontColor=#000000;fontSize=10;labelBackgroundColor=#FFFFFF;verticalAlign=top;exitX=0;exitY=0.615;exitDx=0;exitDy=0;entryX=1;entryY=0.7;entryDx=0;entryDy=0;" edge="1" parent="1" source="system" target="user">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- System <-> Firebase Authentication (two vertical arrows, labels on either side) -->
+        <mxCell id="f3" value="Credentials,&lt;br&gt;reset request" style="endArrow=classic;html=1;rounded=0;strokeColor=#000000;fontColor=#000000;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=0.62;exitY=0;exitDx=0;exitDy=0;entryX=0.65;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="system" target="auth">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="48" y="0" as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="f4" value="ID token or&lt;br&gt;error" style="endArrow=classic;html=1;rounded=0;strokeColor=#000000;fontColor=#000000;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=0.35;exitY=1;exitDx=0;exitDy=0;entryX=0.38;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="auth" target="system">
+          <mxGeometry relative="1" as="geometry"><mxPoint x="-42" y="0" as="offset" /></mxGeometry>
+        </mxCell>
+
+        <!-- System <-> Cloud Firestore (two parallel horizontal arrows) -->
+        <mxCell id="f5" value="Profiles, assessments,&lt;br&gt;predictions, cycle entries" style="endArrow=classic;html=1;rounded=0;strokeColor=#000000;fontColor=#000000;fontSize=10;labelBackgroundColor=#FFFFFF;verticalAlign=bottom;exitX=1;exitY=0.385;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;" edge="1" parent="1" source="system" target="db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="f6" value="Stored records, food and&lt;br&gt;recommendation data" style="endArrow=classic;html=1;rounded=0;strokeColor=#000000;fontColor=#000000;fontSize=10;labelBackgroundColor=#FFFFFF;verticalAlign=top;exitX=0;exitY=0.7;exitDx=0;exitDy=0;entryX=1;entryY=0.615;entryDx=0;entryDy=0;" edge="1" parent="1" source="db" target="system">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
